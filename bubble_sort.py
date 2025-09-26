@@ -14,21 +14,20 @@ arr = [5, 7, 1, 3]
 
 def bubble_sort(arr):
   n = len(arr)
-  for i in range(0, n -1):
-    for j in range(0, n - 1 - i):
-      if arr[j] > arr[j + 1]:
-        # swap
-        arr[j], arr[j + 1] = arr[j + 1], arr[j]
+  for i in range(0, n):
+    for j in range(1, n - i):
+      if arr[j] < arr[j - 1]:
+        arr[j - 1], arr[j] = arr[j], arr[j - 1]
 
 
 def bubble_sort_optimized(arr):
   n = len(arr)
-  for i in range(0, n - 1):
-    for j in range(0, n - 1 - i):
-      swapped = False
-      if arr[j] > arr[j + 1]:
-        # swap
-        arr[j], arr[j + 1] = arr[j + 1], arr[j]
+  for i in range(0, n):
+    swapped = False    
+    for j in range(1, n - i):
+      if arr[j] < arr[j - 1]:
+        swapped = True
+        arr[j - 1], arr[j] = arr[j], arr[j - 1]
     
     if not swapped:
       break
@@ -46,7 +45,7 @@ when the array is already sorted.
 def main():
   arr = string_to_int_list(sys.argv[1])
   print(f'unsorted: {arr}')
-  bubble_sort(arr)
+  bubble_sort_optimized(arr)
   print(f'bubble sorted: {arr}')
 
 if __name__ == '__main__':
