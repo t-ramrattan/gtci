@@ -10,5 +10,48 @@
   Learning Quick Sort will deepen your understanding of sorting algorithms and introduce you to new techniques.
 
 - https://www.geeksforgeeks.org/dsa/quick-sort-algorithm/
+- https://www.youtube.com/watch?v=Vtckgz38QHs
+
+
+Pick a pivot.
+All items to the left of the pivot must be less than it
+All right to the right of the pivot must be greater than the pivot
+
+have to start i is less than 1 of the beginning of the array
+
+if value at j is less than pivot then we increment i then swap (i and j)
+
 '''
 
+def swap(arr, i , j):
+  arr[i],arr[j] = arr[j],arr[i]
+
+def partition(arr, low, high):
+  pivot = arr[high]
+  i = low - 1
+
+  for j in range(low, high):
+    if arr[j] < pivot:
+      i += 1
+      swap(arr, i, j)
+  
+  i += 1
+  swap(arr, i, high)
+  return i
+
+def quick_sort(arr, low, high):
+  if high <= low:
+   return
+  pi = partition(arr, low, high)
+  quick_sort(arr, low, pi - 1)
+  quick_sort(arr, pi + 1, high)
+    
+
+def main():
+  arr = [3,1,2, -1, 5, 7, 12, 100, -10, 50]
+  print(arr)
+  quick_sort(arr, 0, len(arr) - 1)
+  print(arr)
+
+if __name__ == '__main__':
+  main()
